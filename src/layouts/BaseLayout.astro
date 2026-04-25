@@ -8,16 +8,24 @@ interface Props {
 
 const {
   title,
-  description = "Bry Martinez writes about software, projects, and technical notes."
+  description = "Bryan Louie Martinez shares projects, diagrams, and technical notes."
 } = Astro.props;
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
   { href: "/notes", label: "Notes" }
 ];
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === "/") {
+    return currentPath === "/";
+  }
+
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
 ---
 
 <!doctype html>
@@ -31,11 +39,21 @@ const navItems = [
   <body>
     <div class="shell">
       <header class="site-header">
-        <a class="brand" href="/">Bry Martinez</a>
+        <a class="brand" href="/">Bryan Louie Martinez</a>
         <nav aria-label="Primary">
           <ul class="nav-list">
             {navItems.map((item) => (
-              <li><a href={item.href}>{item.label}</a></li>
+              <li>
+                <a
+                  href={item.href}
+                  class:list={{
+                    active: isActive(item.href)
+                  }}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
             ))}
           </ul>
         </nav>
@@ -46,9 +64,8 @@ const navItems = [
       </main>
 
       <footer class="site-footer">
-        <p>Built with Astro. Hosted free on GitHub Pages.</p>
+        <p>Bryan Louie Martinez. Built with Astro and hosted on GitHub Pages.</p>
       </footer>
     </div>
   </body>
 </html>
-

@@ -13,8 +13,8 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
     <p class="eyebrow">Notes</p>
     <h1>Technical notes and reference pages</h1>
     <p>
-      This section is for deeper technical content that does not have to behave
-      like a time-based blog post.
+      This section now replaces the old blog for technical writing. Keep short
+      references, implementation notes, and longer engineering writeups here.
     </p>
   </section>
 
@@ -29,4 +29,3 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
     ))}
   </section>
 </BaseLayout>
-
