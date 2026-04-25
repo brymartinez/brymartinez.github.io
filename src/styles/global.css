@@ -1,0 +1,248 @@
+:root {
+  --bg: #f4efe8;
+  --surface: rgba(255, 255, 255, 0.74);
+  --surface-strong: #fffaf5;
+  --text: #1f1b17;
+  --muted: #61574d;
+  --line: rgba(31, 27, 23, 0.12);
+  --accent: #b14d2f;
+  --accent-strong: #7c2f18;
+  --shadow: 0 24px 60px rgba(55, 35, 18, 0.1);
+  --radius: 22px;
+  --max-width: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(177, 77, 47, 0.18), transparent 32%),
+    linear-gradient(180deg, #f8f2ec 0%, var(--bg) 100%);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+.shell {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin: 0 auto;
+  padding: 1.25rem 0 4rem;
+}
+
+.site-header,
+.site-footer,
+.hero,
+.section,
+.card,
+.prose {
+  backdrop-filter: blur(18px);
+}
+
+.site-header,
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.site-header {
+  margin-bottom: 2rem;
+}
+
+.brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.nav-list a:hover,
+.card a:hover,
+.inline-link:hover {
+  color: var(--accent-strong);
+}
+
+.page-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.hero,
+.section,
+.prose {
+  padding: 1.75rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.hero h1,
+.section h1,
+.prose h1 {
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  line-height: 0.95;
+  margin: 0 0 1rem;
+  letter-spacing: -0.05em;
+}
+
+.hero p,
+.section p,
+.card p,
+.prose p,
+.prose li {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.button-row,
+.card-grid,
+.split-grid,
+.meta-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.button-row {
+  grid-template-columns: repeat(auto-fit, minmax(180px, max-content));
+  margin-top: 1.5rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.button-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.button-secondary {
+  border-color: var(--line);
+  background: var(--surface-strong);
+}
+
+.split-grid {
+  grid-template-columns: 1.25fr 0.85fr;
+}
+
+.card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.card {
+  padding: 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 6px);
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+}
+
+.card h2,
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.meta-list {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-top: 1.25rem;
+}
+
+.meta-list strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.prose {
+  max-width: 780px;
+}
+
+.prose ul {
+  padding-left: 1.2rem;
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: 16px;
+  background: #221d19;
+  color: #f7efe7;
+}
+
+.prose code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.site-footer {
+  margin-top: 2rem;
+}
+
+@media (max-width: 720px) {
+  .site-header,
+  .site-footer {
+    border-radius: 26px;
+  }
+
+  .site-header,
+  .split-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header {
+    display: grid;
+  }
+}
+

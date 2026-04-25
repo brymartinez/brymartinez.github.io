@@ -1,0 +1,100 @@
+---
+import { getCollection } from "astro:content";
+import ContentCard from "../components/ContentCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const blogPosts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
+
+const notes = (await getCollection("notes", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
+---
+
+<BaseLayout title="Bry Martinez | Software, Writing, and Projects">
+  <section class="hero">
+    <p class="eyebrow">Personal site and technical writing hub</p>
+    <h1>Software notes, longer essays, and the projects behind them.</h1>
+    <p>
+      This Astro starter is set up like a lightweight publishing site rather than
+      a single-feed blog. You can keep evergreen pages up top and publish posts,
+      notes, and project writeups over time.
+    </p>
+    <div class="button-row">
+      <a class="button button-primary" href="/blog">Read the blog</a>
+      <a class="button button-secondary" href="/notes">Browse notes</a>
+      <a class="button button-secondary" href="/projects">See projects</a>
+    </div>
+  </section>
+
+  <section class="split-grid">
+    <div class="section">
+      <p class="eyebrow">How the site is structured</p>
+      <h2>WordPress-style content organization, without WordPress.</h2>
+      <p>
+        Keep your permanent pages in the main navigation, write time-based posts
+        in the blog collection, and publish technical references or deep dives as
+        notes. That gives you room for both personal writing and documentation-like
+        content.
+      </p>
+      <div class="meta-list">
+        <div>
+          <strong>Blog</strong>
+          <span>Journal-style posts, essays, launch notes</span>
+        </div>
+        <div>
+          <strong>Notes</strong>
+          <span>Technical content, reference pages, guides</span>
+        </div>
+        <div>
+          <strong>Pages</strong>
+          <span>About, Projects, contact info, evergreen content</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="eyebrow">Publishing workflow</p>
+      <h2>Edit files, push to GitHub, publish for free.</h2>
+      <p>
+        Add a Markdown or MDX file, commit it, and GitHub Pages can publish the
+        update automatically. It stays simple while still feeling like a real
+        publishing platform.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Latest blog posts</p>
+    <div class="card-grid">
+      {blogPosts.map((post) => (
+        <ContentCard
+          href={`/blog/${post.id}/`}
+          title={post.data.title}
+          description={post.data.description}
+          meta={post.data.pubDate.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+          })}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Latest technical notes</p>
+    <div class="card-grid">
+      {notes.map((note) => (
+        <ContentCard
+          href={`/notes/${note.id}/`}
+          title={note.data.title}
+          description={note.data.description}
+          meta={note.data.topic}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+

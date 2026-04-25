@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import ContentCard from "../../components/ContentCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Notes | Bry Martinez">
+  <section class="section">
+    <p class="eyebrow">Notes</p>
+    <h1>Technical notes and reference pages</h1>
+    <p>
+      This section is for deeper technical content that does not have to behave
+      like a time-based blog post.
+    </p>
+  </section>
+
+  <section class="card-grid">
+    {notes.map((note) => (
+      <ContentCard
+        href={`/notes/${note.id}/`}
+        title={note.data.title}
+        description={note.data.description}
+        meta={note.data.topic}
+      />
+    ))}
+  </section>
+</BaseLayout>
+

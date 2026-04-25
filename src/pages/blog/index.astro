@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import ContentCard from "../../components/ContentCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Blog | Bry Martinez">
+  <section class="section">
+    <p class="eyebrow">Blog</p>
+    <h1>Writing in public</h1>
+    <p>
+      The blog is for dated posts: essays, build logs, reflections, and longer
+      project updates.
+    </p>
+  </section>
+
+  <section class="card-grid">
+    {posts.map((post) => (
+      <ContentCard
+        href={`/blog/${post.id}/`}
+        title={post.data.title}
+        description={post.data.description}
+        meta={post.data.pubDate.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        })}
+      />
+    ))}
+  </section>
+</BaseLayout>
+
