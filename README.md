@@ -12,6 +12,8 @@ Starter Astro site for a multi-page personal website and blog, designed to deplo
 
 ## Local setup
 
+Use Node `22.12.0` or newer.
+
 ```bash
 npm install
 npm run dev
@@ -31,4 +33,3 @@ Open the local URL Astro prints in the terminal.
 2. Push this project to that repo
 3. In GitHub, enable Pages with GitHub Actions as the source
 4. Push to `main` to trigger the included deploy workflow
-
