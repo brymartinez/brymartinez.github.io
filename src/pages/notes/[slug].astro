@@ -7,7 +7,7 @@ export async function getStaticPaths() {
 
   return notes.map((note) => ({
     params: { slug: note.id },
-    props: { note }
+    props: { note },
   }));
 }
 
@@ -15,7 +15,10 @@ const { note } = Astro.props;
 const { Content } = await render(note);
 ---
 
-<BaseLayout title={`${note.data.title} | Notes`} description={note.data.description}>
+<BaseLayout
+  title={`${note.data.title} | Notes`}
+  description={note.data.description}
+>
   <article class="prose">
     <p class="eyebrow">{note.data.topic}</p>
     <h1>{note.data.title}</h1>
@@ -23,4 +26,3 @@ const { Content } = await render(note);
     <Content />
   </article>
 </BaseLayout>
-

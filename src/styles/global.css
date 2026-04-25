@@ -345,16 +345,23 @@ a {
 }
 
 .prose {
-  max-width: 780px;
+  min-width: 0;
+  padding: 2rem clamp(1.4rem, 4vw, 2.6rem);
 }
 
 .prose ul {
   padding-left: 1.2rem;
 }
 
+.prose > * {
+  max-width: 100%;
+}
+
 .prose pre {
+  max-width: 100%;
   overflow-x: auto;
-  padding: 1rem;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.35rem;
   border-radius: 16px;
   background: #111111;
   color: #fff7f1;
@@ -362,6 +369,10 @@ a {
 
 .prose code {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.prose :not(pre) > code {
+  overflow-wrap: anywhere;
 }
 
 .site-footer {
