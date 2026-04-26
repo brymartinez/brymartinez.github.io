@@ -167,7 +167,8 @@ a {
 .button-row,
 .card-grid,
 .split-grid,
-.meta-list {
+.meta-list,
+.badge-link-row {
   display: grid;
   gap: 1rem;
 }
@@ -228,7 +229,8 @@ a {
 
 .experience-list,
 .timeline,
-.tag-list {
+.tag-list,
+.diagram-shell {
   display: grid;
   gap: 1rem;
 }
@@ -309,6 +311,89 @@ a {
   color: var(--accent-strong);
   font-size: 0.82rem;
   font-weight: 600;
+}
+
+.project-preview {
+  margin-top: 1.5rem;
+}
+
+.badge-link-row {
+  grid-template-columns: repeat(auto-fit, minmax(160px, max-content));
+  margin: 1.25rem 0 0.5rem;
+}
+
+.badge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(243, 156, 18, 0.25);
+  border-radius: 999px;
+  background: rgba(243, 156, 18, 0.08);
+  color: var(--accent-strong);
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.badge-link:hover {
+  background: rgba(243, 156, 18, 0.14);
+}
+
+.project-entry + .project-entry {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.project-title {
+  margin: 0 0 1rem;
+}
+
+.project-title a {
+  text-decoration: none;
+}
+
+.project-title a:hover {
+  color: var(--accent-strong);
+}
+
+.project-bullets {
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.project-bullets li + li {
+  margin-top: 0.65rem;
+}
+
+.project-bullets a {
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
+.project-bullets a:hover {
+  text-decoration: underline;
+}
+
+.diagram-shell {
+  margin-top: 1rem;
+}
+
+.diagram-render {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 6px);
+  background: linear-gradient(180deg, #ffffff 0%, #fff7ed 100%);
+  box-shadow: var(--shadow);
+}
+
+.diagram-render .mermaid {
+  min-width: 720px;
 }
 
 .meta-list {

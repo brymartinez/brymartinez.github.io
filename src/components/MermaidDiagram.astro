@@ -1,0 +1,34 @@
+---
+interface Props {
+  chart: string;
+  title?: string;
+}
+
+const { chart, title = "Diagram" } = Astro.props;
+---
+
+<section class="diagram-shell" aria-label={title}>
+  <div class="diagram-render">
+    <pre class="mermaid">{chart}</pre>
+  </div>
+</section>
+
+<script>
+  import mermaid from "mermaid";
+
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#fff7ed",
+      primaryTextColor: "#111111",
+      primaryBorderColor: "#f39c12",
+      lineColor: "#df5901",
+      secondaryColor: "#ffffff",
+      tertiaryColor: "#fff7ed",
+      fontFamily: "Inter, Segoe UI, Helvetica Neue, Arial, sans-serif"
+    }
+  });
+</script>
+

@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@astrojs/mdx": "latest",
-    "astro": "latest"
+    "astro": "latest",
+    "mermaid": "latest"
   },
   "devDependencies": {
     "@astrojs/check": "latest",

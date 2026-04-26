@@ -1,14 +1,131 @@
 ---
+import MermaidDiagram from "../components/MermaidDiagram.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const telemetryDiagram = ``;
+const onboardingDiagram = `flowchart LR
+    Client["Payment Terminal"] --> Onboarding["Terminal Onboarding"]
+    Onboarding --> Internal["Internal Onboarding"]
+
+    Internal --> InternalAPI["Internal APIs"]
+
+    Internal --> Provider1Base["Provider 1 Proxy"]
+    Provider1Base --> Provider1["Terminal Provider API 1"]
+
+    Internal --> Provider2Base["Provider 2 Proxy"]
+    Provider2Base --> Provider2["Terminal Provider API 2"]`;
+
+const profileManagerDiagram = `flowchart LR
+    Client["Payment Terminal"] --> Gateway["Profile Manager"]
+    
+    Gateway --> DB["DynamoDB"]
+    DB --> Base["Mother Profile"]
+    Base --> PAX["PAX Base"]
+    Base --> Sunmi["Sunmi Base"]
+
+    PAX --> PAXUnattended["PAX Unattended"]
+    PAXUnattended --> PAXJcb["PAX JCB Only"]
+    PAXUnattended --> PAXAll["PAX All Payments"]`;
+
+const arbitrageDiagram = `flowchart LR
+  Client["Code"] --> Maker["Maker Exchange"]
+  Client --> Taker["Taker Exchange"]
+
+  Maker --> MOrderbook["Orderbook"]
+  MOrderbook --> A1["Sell/Buy Market Order"]
+
+  Taker --> TOrderbook["Orderbook"]
+  TOrderbook --> B1["Buy/Sell Limit Order"]
+  B1 --> B2["Limit Order Filled"]
+
+  A1 --> B2
+  `;
+
+const projectLinks = [
+  { label: "Terminal Onboarding", href: "#terminal-onboarding" },
+  { label: "Profile Manager", href: "#profile-manager" },
+  { label: "Arbitrage Trading", href: "#arbitrage-trading" },
+  { label: "Other Projects", href: "#other-projects" },
+];
 ---
 
 <BaseLayout title="Notable Projects | Bryan Louie Martinez">
   <section class="section">
     <p class="eyebrow">Notable Projects</p>
-    <h1>Under construction</h1>
     <p>
-      This section will eventually hold diagrams and selected project snapshots.
-      For now, it is a placeholder while the structure of the site settles.
+      A small set of built systems, each with its own entry and diagram. More
+      will be added over time.
     </p>
+
+    <div class="badge-link-row" aria-label="Project shortcuts">
+      {
+        projectLinks.map((link) => (
+          <a class="badge-link" href={link.href}>
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <article class="project-entry" id="terminal-onboarding">
+      <h2 class="project-title">
+        <a href="#terminal-onboarding">Terminal Onboarding</a>
+      </h2>
+      <MermaidDiagram
+        chart={onboardingDiagram}
+        title="Terminal Onboarding Flow"
+      />
+      <p>
+        Contains several microservices to facilitate terminal provisioning.
+        Terminal is received and onboarded with the appropriate profile before
+        it's usable by the merchant. All communicating via SNS.
+      </p>
+    </article>
+
+    <article class="project-entry" id="profile-manager">
+      <h2 class="project-title">
+        <a href="#profile-manager">Profile Manager</a>
+      </h2>
+      <MermaidDiagram
+        chart={profileManagerDiagram}
+        title="Profile Manager Flow"
+      />
+      <p>
+        Hierarchical profile management for terminals. Takes advantage of
+        DynamoDB for setting keys on the fly and passing them down.
+      </p>
+    </article>
+
+    <article class="project-entry" id="arbitrage-trading">
+      <h2 class="project-title">
+        <a href="#arbitrage-trading">Arbitrage Trading</a>
+      </h2>
+      <MermaidDiagram chart={arbitrageDiagram} title="Market Maker Flow" />
+      <p>
+        Simple market making strategy involving reading continuous streams of
+        orderbook data and making `ms` decisions based on it. Ran across 3
+        exchanges.
+      </p>
+    </article>
+
+    <article class="project-entry" id="other-projects">
+      <h2 class="project-title">
+        <a href="#other-projects">Other Projects</a>
+      </h2>
+      <ul class="project-bullets">
+        <li>
+          <a href="https://apps.apple.com/us/app/soilmate-ph/id6444438190">
+            SoilMate
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://web.archive.org/web/20170603214028/https://raket.ph/"
+          >
+            Raket.ph
+          </a>
+        </li>
+      </ul>
+    </article>
   </section>
 </BaseLayout>
