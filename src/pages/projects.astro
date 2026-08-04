@@ -2,7 +2,6 @@
 import MermaidDiagram from "../components/MermaidDiagram.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const telemetryDiagram = ``;
 const onboardingDiagram = `flowchart LR
     Client["Payment Terminal"] --> Onboarding["Terminal Onboarding"]
     Onboarding --> Internal["Internal Onboarding"]
@@ -42,19 +41,19 @@ const arbitrageDiagram = `flowchart LR
   `;
 
 const projectLinks = [
-  { label: "Terminal Onboarding", href: "#terminal-onboarding" },
-  { label: "Profile Manager", href: "#profile-manager" },
+  { label: "Payment Terminal Platform", href: "#payment-terminal-platform" },
   { label: "Arbitrage Trading", href: "#arbitrage-trading" },
-  { label: "Other Projects", href: "#other-projects" },
+  { label: "Public Products", href: "#public-products" },
+  { label: "Next Case Studies", href: "#next-case-studies" },
 ];
 ---
 
 <BaseLayout title="Notable Projects | Bryan Louie Martinez">
   <section class="section">
-    <p class="eyebrow">Notable Projects</p>
+    <p class="eyebrow">Selected Engineering Work</p>
     <p>
-      A small set of built systems, each with its own entry and diagram. More
-      will be added over time.
+      Systems and products that show how I approach architecture, platform design,
+      and delivery. Work projects use public or anonymized details.
     </p>
 
     <div class="badge-link-row" aria-label="Project shortcuts">
@@ -67,32 +66,32 @@ const projectLinks = [
       }
     </div>
 
-    <article class="project-entry" id="terminal-onboarding">
+    <article class="project-entry" id="payment-terminal-platform">
       <h2 class="project-title">
-        <a href="#terminal-onboarding">Terminal Onboarding</a>
+        <a href="#payment-terminal-platform">Payment Terminal Platform</a>
       </h2>
+      <p>
+        A group of services that provisions payment terminals before merchants use
+        them. The platform coordinates onboarding, integrates with multiple terminal
+        providers, and applies the correct device profile.
+      </p>
+      <h3>Onboarding flow</h3>
       <MermaidDiagram
         chart={onboardingDiagram}
         title="Terminal Onboarding Flow"
       />
       <p>
-        Contains several microservices to facilitate terminal provisioning.
-        Terminal is received and onboarded with the appropriate profile before
-        it's usable by the merchant. All communicating via SNS.
+        SNS connects the provisioning services. Provider-specific proxies keep each
+        external terminal API separate from the internal onboarding flow.
       </p>
-    </article>
-
-    <article class="project-entry" id="profile-manager">
-      <h2 class="project-title">
-        <a href="#profile-manager">Profile Manager</a>
-      </h2>
+      <h3>Profile design</h3>
       <MermaidDiagram
         chart={profileManagerDiagram}
         title="Profile Manager Flow"
       />
       <p>
-        Hierarchical profile management for terminals. Takes advantage of
-        DynamoDB for setting keys on the fly and passing them down.
+        DynamoDB stores a hierarchy of shared and device-specific profiles. Common
+        settings pass down to more specific terminal profiles.
       </p>
     </article>
 
@@ -102,15 +101,14 @@ const projectLinks = [
       </h2>
       <MermaidDiagram chart={arbitrageDiagram} title="Market Maker Flow" />
       <p>
-        Simple market making strategy involving reading continuous streams of
-        orderbook data and making `ms` decisions based on it. Ran across 3
-        exchanges.
+        A market-making system that read continuous order book streams and made
+        millisecond trading decisions across three exchanges.
       </p>
     </article>
 
-    <article class="project-entry" id="other-projects">
+    <article class="project-entry" id="public-products">
       <h2 class="project-title">
-        <a href="#other-projects">Other Projects</a>
+        <a href="#public-products">Public Products</a>
       </h2>
       <ul class="project-bullets">
         <li>
@@ -125,6 +123,22 @@ const projectLinks = [
             Raket.ph
           </a>
         </li>
+      </ul>
+    </article>
+
+    <article class="project-entry" id="next-case-studies">
+      <h2 class="project-title">
+        <a href="#next-case-studies">Next Case Studies</a>
+      </h2>
+      <p>
+        Strong candidates for future case studies, once their scope and results are
+        ready to publish:
+      </p>
+      <ul class="project-bullets">
+        <li>Engineering platforms, shared tooling, and delivery standards.</li>
+        <li>Fractional CTO work covering product direction and team delivery.</li>
+        <li>Cloud modernization with reliability, cost, or delivery results.</li>
+        <li>Reliability programs that reduced incidents across systems.</li>
       </ul>
     </article>
   </section>
