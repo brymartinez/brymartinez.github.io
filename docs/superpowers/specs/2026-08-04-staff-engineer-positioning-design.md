@@ -21,16 +21,16 @@ Keep all official titles in the CV unchanged.
 
 ## Projects page
 
-Lead with outcome-based case studies. Each main case study should cover:
+Use a case-study structure. A complete case study can cover:
 
 - The problem.
 - Bryan's role and scope.
 - Key technical decisions.
-- Team or business impact.
+- Team or business impact when it has been confirmed.
 - A system diagram.
 - Measured results when verified results are available.
 
-Combine Terminal Onboarding and Profile Manager into one payment terminal platform case study. Keep Arbitrage Trading, SoilMate, and Raket.ph as supporting projects.
+For this first pass, use only facts already present on the site. Combine Terminal Onboarding and Profile Manager into one main payment terminal platform entry. Explain the problem and system design from the current copy and diagrams. Do not add role, scope, impact, or results that have not been confirmed. Keep Arbitrage Trading, SoilMate, and Raket.ph as shorter supporting entries.
 
 Do not add private company names, confidential details, or invented results. Use anonymized descriptions where needed.
 
@@ -47,7 +47,8 @@ Only publish a full case study after its facts and results are confirmed.
 
 ## Scope
 
-- Update the home-page message and relevant page titles.
+- Replace the home-page introduction with the approved message. Keep the home page document title as `Bryan Louie Martinez`.
+- Change the Projects page heading from `Notable Projects` to `Selected Engineering Work`. Keep its document title as `Notable Projects | Bryan Louie Martinez`.
 - Reframe current project descriptions around scope and decisions.
 - Merge the two payment terminal entries into one case study.
 - Add a short list of project themes to document next only if it improves the Projects page.
