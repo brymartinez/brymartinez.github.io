@@ -41,18 +41,24 @@ const arbitrageDiagram = `flowchart LR
   `;
 
 const projectLinks = [
+  { label: "Traceguard", href: "#traceguard" },
+  { label: "Foreman", href: "#foreman" },
   { label: "Payment Terminal Platform", href: "#payment-terminal-platform" },
   { label: "Arbitrage Trading", href: "#arbitrage-trading" },
   { label: "Public Products", href: "#public-products" },
 ];
 ---
 
-<BaseLayout title="Notable Projects | Bryan Louie Martinez">
+<BaseLayout
+  title="Notable Projects | Bryan Louie Martinez"
+  description="Selected developer tools and platform work by Bryan Louie Martinez, a tech lead and staff-level engineer."
+>
   <section class="section">
     <p class="eyebrow">Selected Engineering Work</p>
     <p>
-      Systems and products that show how I approach architecture, platform design,
-      and delivery. Work projects use public or anonymized details.
+      Developer tools and platform systems I have built. They show my approach to
+      technical direction, system design, and delivery. Company work uses public
+      or anonymized details.
     </p>
 
     <div class="badge-link-row" aria-label="Project shortcuts">
@@ -64,6 +70,29 @@ const projectLinks = [
         ))
       }
     </div>
+
+    <article class="project-entry" id="traceguard">
+      <h2 class="project-title"><a href="#traceguard">Traceguard</a></h2>
+      <p>
+        I built a TypeScript package for structured server-side logging. It keeps
+        request context separate, masks configured sensitive fields, and writes
+        JSON formatted for stdout, Google Cloud, or AWS.
+        <a href="https://www.npmjs.com/package/@brymartinez/traceguard">
+          View Traceguard on npm
+        </a>.
+      </p>
+    </article>
+
+    <article class="project-entry" id="foreman">
+      <h2 class="project-title"><a href="#foreman">Foreman</a></h2>
+      <p>
+        I built a Go CLI that delegates GitHub issues to coding agents,
+        coordinates review between agents, and checks pull request CI before
+        returning work for human review.
+        <a href="https://github.com/midsoln/foreman">View midsoln/foreman</a>
+        (private repository).
+      </p>
+    </article>
 
     <article class="project-entry" id="payment-terminal-platform">
       <h2 class="project-title">
